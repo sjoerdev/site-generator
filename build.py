@@ -13,22 +13,25 @@ JS_DIR = ROOT_DIR / "js"
 
 md = MarkdownIt("commonmark")
 
-def fence_renderer(tokens, idx, options, env):
-    token = tokens[idx]
-    info = token.info.strip()
-    lang = info.split()[0] if info else ""
-    class_attr = f' class="language-{lang}"' if lang else ""
-    return f"<pre><code{class_attr}>{md.utils.escapeHtml(token.content)}</code></pre>\n"
+# def fence_renderer(tokens, idx, options, env):
+#     token = tokens[idx]
+#     info = token.info.strip()
+#     lang = info.split()[0] if info else ""
+#     class_attr = f' class="language-{lang}"' if lang else ""
+#     return f"<pre><code{class_attr}>{md.utils.escapeHtml(token.content)}</code></pre>\n"
 
-md.renderer.rules["fence"] = fence_renderer
+# md.renderer.rules["fence"] = fence_renderer
 
-def load_template(name):
-    return (TEMPLATE_DIR / name).read_text(encoding="utf-8")
+def load_template(name: str) -> str:
+    template_path = TEMPLATE_DIR / name
+    if not template_path.exists():
+        template_path = TEMPLATE_DIR / "base.html"
+    return template_path.read_text(encoding="utf-8")
 
-def insert_content(input_html, content_html):
+def insert_content(input_html: str, content_html: str) -> str:
     return input_html.replace("{{ content }}", content_html)
 
-def insert_title(input_html, title):
+def insert_title(input_html: str, title: str) -> str:
     return input_html.replace("{{ title }}", title)
 
 def copy_static(src, dst):
@@ -62,7 +65,7 @@ def build():
         content_inserted_html = insert_content(template, html)
 
         # insert title
-        title_inserted_html = insert_content(content_inserted_html, html)
+        title_inserted_html = insert_title(content_inserted_html, md_file.stem)
 
         # decide on final html
         final_html = title_inserted_html
