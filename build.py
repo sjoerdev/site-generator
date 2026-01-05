@@ -26,6 +26,11 @@ def insert_placeholders(template: str, replacements: dict[str, str]) -> str:
         result = insert_template(result, value, placeholder)
     return result
 
+def build_nav(links: dict[str, str]) -> str:
+    return "\n".join(
+        f'<a href="{href}">{label}</a>'
+        for label, href in links.items()
+    )
 
 def copy_static(src, dst):
     if src.exists():
@@ -52,9 +57,16 @@ def build():
         template_name = md_file.stem + ".html"
         template = load_template(template_name)
 
+        nav_links = {
+            "Home": "index.html",
+            "Blog": "blog.html",
+            "Resume": "resume.html",
+        }
+
         replacements = {
             "content": content_html,
             "title": md_file.stem,
+            "nav": build_nav(nav_links),
         }
 
         # decide on final html

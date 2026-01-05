@@ -127,6 +127,31 @@ img {
     border-radius: 8px;
 }
 
+/* footer */
 footer {
     text-align: center;
+}
+
+/* header */
+header {
+    padding: 1.5rem 0;
+}
+
+/* navbar */
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* navbar button */
+header nav a {
+    padding: 0.4rem 1.2rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* navbar button hover */
+header nav a:hover {
+    background: hsl(0, 0%, 90%);
 }
