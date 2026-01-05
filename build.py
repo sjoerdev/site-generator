@@ -17,11 +17,8 @@ def load_template(name: str) -> str:
         template_path = TEMPLATE_DIR / "base.html"
     return template_path.read_text(encoding="utf-8")
 
-def insert_content(input_html: str, content_html: str) -> str:
-    return input_html.replace("{{ content }}", content_html)
-
-def insert_title(input_html: str, title: str) -> str:
-    return input_html.replace("{{ title }}", title)
+def insert_template(input_html: str, insertion: str, name: str) -> str:
+    return input_html.replace("{{ {} }}".format(name), insertion)
 
 def copy_static(src, dst):
     if src.exists():
@@ -49,10 +46,10 @@ def build():
         template = load_template(template_name)
 
         # insert content
-        content_inserted_html = insert_content(template, html)
+        content_inserted_html = insert_template(template, html, "content")
 
         # insert title
-        title_inserted_html = insert_title(content_inserted_html, md_file.stem)
+        title_inserted_html = insert_template(content_inserted_html, md_file.stem, "title")
 
         # decide on final html
         final_html = title_inserted_html
