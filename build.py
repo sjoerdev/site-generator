@@ -9,16 +9,7 @@ CONTENT_DIR = ROOT_DIR / "content"
 TEMPLATE_DIR = ROOT_DIR / "templates"
 STATIC_DIR = ROOT_DIR / "static"
 
-md = MarkdownIt("commonmark")
-
-# def fence_renderer(tokens, idx, options, env):
-#     token = tokens[idx]
-#     info = token.info.strip()
-#     lang = info.split()[0] if info else ""
-#     class_attr = f' class="language-{lang}"' if lang else ""
-#     return f"<pre><code{class_attr}>{md.utils.escapeHtml(token.content)}</code></pre>\n"
-
-# md.renderer.rules["fence"] = fence_renderer
+md = MarkdownIt("commonmark").enable('table')
 
 def load_template(name: str) -> str:
     template_path = TEMPLATE_DIR / name
