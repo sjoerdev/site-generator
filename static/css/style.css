@@ -72,21 +72,26 @@ a:hover {
     text-decoration: underline;
 }
 
-/* code blocks */
-pre code {
-    background-color: #2d2d2d; 
+/* pre blocks */
+pre {
+    background-color: #ccc; 
     color: #f8f8f2;
-    padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
     margin: 1rem 0;
+    padding: 1px;
+}
+
+/* pre code blocks */
+pre code {
+    border-radius: 8px;
+    overflow-x: auto;
 }
 
 /* code inline */
 code {
     background-color: #f5f5f5;
     padding: 2px 6px;
-    border-radius: 4px;
 }
 
 /* tables */
