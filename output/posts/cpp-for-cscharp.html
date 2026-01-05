@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>cpp-for-cscharp</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/highlight.css">
-  <script src="../js/highlight.min.js"></script>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/highlight.css">
+  <script src="../static/js/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
 </head>
 
@@ -24,7 +24,7 @@ As a C# developer you don't need to learn C++ from the ground up, you just need 
 <h2>Types</h2>
 <p>In C++ most types have the same or a similar name as in C#, but not always.
 This is a table that hold a comparison of all fundamental types you should know about:</p>
-<p><img src="/images/table-types.png" alt="types" /></p>
+<p><img src="/static/img/table-types.png" alt="types" /></p>
 <h2>References</h2>
 <p>In C++ classes are value types by default, not reference types like in C#.</p>
 <p>Passing a class instance by reference to a function in C# is:</p>
@@ -198,7 +198,7 @@ void test()
 </code></pre>
 <br>
 <h2>Headers</h2>
-<p><img src="/images/headers.png" alt="headers" /></p>
+<p><img src="/static/img/headers.png" alt="headers" /></p>
 <p><strong>What are they?:</strong></p>
 <p>In C# you can acces functions that are in a different <code>.cs</code> file by just making them both use the same namespace. In C++, its a little bit more complex.
 Header files can be seen as an outline of all the functions contained in a <code>.cpp</code> file.
@@ -216,9 +216,9 @@ You can include a header in 2 ways: <code>#include &quot;file.h&quot;</code> or 
 <p>There are a set of build in header libraries you can use for common operations called the <code>Standard Libary</code> or <code>std</code> for short. You can look at the standard library as the conceptual equivelant to the <code>System</code> namespace in the C# language, it provides libraries for common operations like input and output and file operations as well as containers like strings, lists, dictionaries and others.</p>
 <p>The most commonly used headers in the standard library:</p>
 <p><strong>C++ Standard Library:</strong></p>
-<p><img src="/images/cppstd.png" alt="standardlibrarycpp" /></p>
+<p><img src="/static/img/cppstd.png" alt="standardlibrarycpp" /></p>
 <p><strong>Plain C Standard Library:</strong></p>
-<p><img src="/images/cstd.png" alt="standardlibraryc" /></p>
+<p><img src="/static/img/cstd.png" alt="standardlibraryc" /></p>
 <p>If you are like me and you write C++ is a very plain C kind of way and want access to <code>malloc</code> and <code>free</code>
 and other stuff from the plain C standard library. You could just include <code>&lt;stdlib.h&gt;</code> and it will work,
 but since plain c doesnt have namespaces, all the standard library features will pollute the global namespace.

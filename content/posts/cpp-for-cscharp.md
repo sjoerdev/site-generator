@@ -11,7 +11,7 @@ As a C# developer you don't need to learn C++ from the ground up, you just need 
 In C++ most types have the same or a similar name as in C#, but not always. 
 This is a table that hold a comparison of all fundamental types you should know about:
 
-![types](/images/table-types.png)
+![types](/static/img/table-types.png)
 
 ## References
 
@@ -224,7 +224,7 @@ void test()
 
 ## Headers
 
-![headers](/images/headers.png)
+![headers](/static/img/headers.png)
 
 **What are they?:**
 
@@ -251,11 +251,11 @@ The most commonly used headers in the standard library:
 
 **C++ Standard Library:**
 
-![standardlibrarycpp](/images/cppstd.png)
+![standardlibrarycpp](/static/img/cppstd.png)
 
 **Plain C Standard Library:**
 
-![standardlibraryc](/images/cstd.png)
+![standardlibraryc](/static/img/cstd.png)
 
 If you are like me and you write C++ is a very plain C kind of way and want access to ``malloc`` and ``free`` 
 and other stuff from the plain C standard library. You could just include ``<stdlib.h>`` and it will work, 

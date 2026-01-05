@@ -7,9 +7,7 @@ ROOT_DIR = Path(__file__).parent
 OUTPUT_DIR = ROOT_DIR / "output"
 CONTENT_DIR = ROOT_DIR / "content"
 TEMPLATE_DIR = ROOT_DIR / "templates"
-IMAGES_DIR = ROOT_DIR / "images"
-CSS_DIR = ROOT_DIR / "css"
-JS_DIR = ROOT_DIR / "js"
+STATIC_DIR = ROOT_DIR / "static"
 
 md = MarkdownIt("commonmark")
 
@@ -44,9 +42,7 @@ def build():
     OUTPUT_DIR.mkdir()
 
     # copy static content
-    copy_static(CSS_DIR, OUTPUT_DIR / "css")
-    copy_static(JS_DIR, OUTPUT_DIR / "js")
-    copy_static(IMAGES_DIR, OUTPUT_DIR / "images")
+    copy_static(STATIC_DIR, OUTPUT_DIR / "static")
 
     # build site
     for md_file in CONTENT_DIR.rglob("*.md"):
