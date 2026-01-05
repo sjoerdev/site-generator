@@ -20,6 +20,13 @@ def load_template(name: str) -> str:
 def insert_template(input_html: str, insertion: str, name: str) -> str:
     return input_html.replace(f"{{{{ {name} }}}}", insertion)
 
+def insert_placeholders(template: str, replacements: dict[str, str]) -> str:
+    result = template
+    for placeholder, value in replacements.items():
+        result = insert_template(result, value, placeholder)
+    return result
+
+
 def copy_static(src, dst):
     if src.exists():
         shutil.copytree(src, dst)
@@ -39,14 +46,19 @@ def build():
         out_path.parent.mkdir(parents=True, exist_ok=True)
 
         # render md to html
-        html = md.render(md_file.read_text(encoding="utf-8"))
+        content_html = md.render(md_file.read_text(encoding="utf-8"))
 
         # load html template
         template_name = md_file.stem + ".html"
         template = load_template(template_name)
 
+        replacements = {
+            "content": content_html,
+            "title": md_file.stem,
+        }
+
         # decide on final html
-        final_html = insert_template(template, html, "content")
+        final_html = insert_placeholders(template, replacements)
 
         # write out final html
         out_path.write_text(final_html, encoding="utf-8")
