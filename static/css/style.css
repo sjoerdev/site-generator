@@ -64,7 +64,7 @@ p {
 a {
     color: #0077cc; 
     text-decoration: none;
-    font-family: 'Cascadia Mono', monospace;
+    font-family: inherit;
 }
 
 /* links hovered */
