@@ -1,3 +1,14 @@
+
+:root {
+    --body-bg: #fdfdfd;
+    --surface-bg: #ffffff;
+    --text: #333333;
+    --border: #cccccc;
+    --accent: #0077cc;
+    --inline-code-bg: #ededed;
+    --table-header-bg: #f4f4f4;
+}
+
 * {
     margin: 0;              /* Remove default margin */
     padding: 0;             /* Remove default padding */
@@ -7,8 +18,8 @@
 body {
     font-family: "Source Sans 3";
     line-height: 1.6;
-    color: #333;
-    background-color: #fdfdfd;
+    color: var(--text);
+    background-color: var(--body-bg);
 }
 
 /* header */
@@ -40,6 +51,18 @@ header nav a {
     text-decoration: none !important;
 }
 
+@media (max-width: 600px) {
+    header nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    header nav a {
+        text-align: center;
+    }
+}
+
+
 /* navbar button hover */
 header nav a:hover {
     background: hsl(0, 0%, 90%);
@@ -51,9 +74,17 @@ main {
     max-width: 800px;
     padding: 2rem;
 
-    background-color: #ffffff;
+    background-color: var(--surface-bg);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,10 +96,19 @@ h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+
+
+
 p { margin: 1rem 0; }
 
 a {
-    color: #0077cc;
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -78,22 +118,24 @@ a:hover {
 
 /* pre blocks */
 pre {
-    background-color: #ccc;
+    background-color: var(--border);
     margin: 1rem 0rem;
     border-radius: 12px;
+    overflow-x: auto;
 }
 
 /* code block inside */
 pre code {
     overflow-x: auto;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     font-family: inherit;
     border-radius: inherit;
+    overflow-x: auto;
 }
 
 /* code inline */
 code {
-    background-color: #ededed;
+    background-color: var(--inline-code-bg);
     padding: 0rem 0.3rem;
     border-radius: 4px;
     font-family: inherit;
@@ -105,20 +147,28 @@ table {
     border-collapse: collapse;
 }
 
+@media (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
 /* table cells */
 table th, table td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     padding: 0.5rem 0.5rem;
 }
 
 /* table header */
 table th {
-    background-color: #f4f4f4;
+    background-color: var(--table-header-bg);
 }
 
 /* blockquotes */
 blockquote {
-    border-left: 4px solid #0077cc;
+    border-left: 4px solid var(--accent);
     padding-left: 1rem;
     margin: 1rem 0;
     font-style: italic;
