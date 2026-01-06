@@ -58,9 +58,9 @@ def build():
         template = load_template(template_name)
 
         nav_links = {
-            "Home": "index.html",
-            "Blog": "blog.html",
-            "Resume": "resume.html",
+            "Home": f"/{OUTPUT_DIR.stem}/index.html",
+            "Blog": f"/{OUTPUT_DIR.stem}/blog.html",
+            "Resume": f"/{OUTPUT_DIR.stem}/resume.html",
         }
 
         replacements = {
