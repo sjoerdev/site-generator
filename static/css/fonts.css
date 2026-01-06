@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Source Sans 3";
+    src: url(/static/fonts/SourceSans3.ttf);
+}
+
+@font-face {
+    font-family: 'Cascadia Mono', monospace; 
+    src: url(/static/fonts/CascadiaMono.woff2);
+}

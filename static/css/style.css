@@ -7,8 +7,8 @@
 
 /* body */
 body {
-    font-family: 'Cascadia Mono', monospace; 
-    /* Cascadia Code Mono for all text */
+    font-family: "Source Sans 3";
+    /* Font family for all text */
     
     line-height: 1.6; 
     /* Readable line spacing (1.6 × font size) */
