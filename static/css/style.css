@@ -80,18 +80,21 @@ pre {
     overflow-x: auto;
     margin: 1rem 0;
     padding: 1px;
+    font-family: inherit;
 }
 
 /* pre code blocks */
 pre code {
     border-radius: 8px;
     overflow-x: auto;
+    font-family: inherit;
 }
 
 /* code inline */
 code {
     background-color: #f5f5f5;
     padding: 2px 6px;
+    font-family: inherit;
 }
 
 /* tables */
