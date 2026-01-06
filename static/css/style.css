@@ -9,49 +9,49 @@
 body {
     font-family: "Source Sans 3";
     /* Font family for all text */
-    
-    line-height: 1.6; 
+
+    line-height: 1.6;
     /* Readable line spacing (1.6 × font size) */
-    
-    color: #333; 
+
+    color: #333;
     /* Dark gray text */
-    
-    background-color: #fdfdfd; 
+
+    background-color: #fdfdfd;
     /* Light page background */
-    
-    padding: 2rem; 
+
+    padding: 2rem;
     /* Space around the page content (2 × root font size, usually 32px) */
 }
 
 /* main content */
 body main {
-    margin: 0 auto; 
+    margin: 0 auto;
     /* Centers <main> horizontally */
-    
-    max-width: 800px; 
+
+    max-width: 800px;
     /* Limit width for readability */
-    
-    padding: 2rem; 
+
+    padding: 2rem;
     /* Inner spacing */
-    
-    background-color: #fff; 
+
+    background-color: #fff;
     /* White card background */
-    
-    border-radius: 10px; 
+
+    border-radius: 10px;
     /* Rounded corners */
-    
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     /* Subtle shadow for depth */
 }
 
 /* headers */
 h1, h2, h3, h4, h5, h6 {
-    margin: 1.5rem 0 0.5rem; 
-    font-weight: 600; 
+    margin: 1.5rem 0 0.5rem;
+    font-weight: 600;
     color: #222;
 }
 
-h1 { font-size: 2.5rem; } 
+h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
@@ -62,7 +62,7 @@ p {
 
 /* links */
 a {
-    color: #0077cc; 
+    color: #0077cc;
     text-decoration: none;
     font-family: inherit;
 }
@@ -74,7 +74,7 @@ a:hover {
 
 /* pre blocks */
 pre {
-    background-color: #ccc; 
+    background-color: #ccc;
     color: #f8f8f2;
     border-radius: 8px;
     overflow-x: auto;
