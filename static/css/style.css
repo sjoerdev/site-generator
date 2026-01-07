@@ -19,7 +19,7 @@ body.dark {
     --text: #e4e6eb;
     --border: #2a2d34;
     --accent: #4da3ff;
-    --inline-code-bg: #1f2228;
+    --inline-code-bg: hsl(210, 17%, 24%);
     --table-header-bg: #1c1f26;
 }
 
