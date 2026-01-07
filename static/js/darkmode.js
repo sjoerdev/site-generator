@@ -16,6 +16,7 @@ function enableDarkMode(isDark) {
         document.body.classList.remove('dark');
         setHljsTheme('github');
     }
+    localStorage.setItem('darkMode', isDark ? 'true' : 'false');
 }
 
 function toggleDarkModeButton() {
@@ -25,11 +26,18 @@ function toggleDarkModeButton() {
 
 // watch for system dark mode changes
 darkMode.addEventListener('change', (event) => {
-    enableDarkMode(event.matches);
+    if (!localStorage.getItem('darkMode')) {
+        enableDarkMode(event.matches);
+    }
 });
 
 // initial theme based on system preference
-enableDarkMode(darkMode.matches);
+const savedPreference = localStorage.getItem('darkMode');
+if (savedPreference !== null) {
+    enableDarkMode(savedPreference === 'true');
+} else {
+    enableDarkMode(darkMode.matches);
+}
 
 // toggle button (make sure this exists in HTML)
 const toggleButton = document.getElementById('dark-mode-toggle');
