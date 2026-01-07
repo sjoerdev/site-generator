@@ -32,7 +32,7 @@ darkMode.addEventListener('change', (event) => {
 enableDarkMode(darkMode.matches);
 
 // toggle button (make sure this exists in HTML)
-const toggleButton = document.getElementById('theme-toggle');
+const toggleButton = document.getElementById('dark-mode-toggle');
 if (toggleButton) {
     toggleButton.addEventListener('click', toggleDarkModeButton);
 }
