@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ title }}</title>
+
+  <link rel="stylesheet" href="/static/css/fonts.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/highlight/default.css" id="hljs-theme">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+  <script src="/static/js/darkmode.js" defer></script>
+  
+  <script src="/static/js/highlight.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      {{ nav }}
+      <a href="#" id="dark-mode-toggle"><span class="material-icons">&#xE81A;</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="blog-posts-container">
+      {{ posts }}
+    </div>
+  </main>
+
+  <footer>
+    <p>2026 Sjoerd Wouters</p>
+  </footer>
+
+</body>
+
+</html>

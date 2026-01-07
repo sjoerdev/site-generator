@@ -4,10 +4,12 @@ from pathlib import Path
 from markdown_it import MarkdownIt
 
 ROOT_DIR = Path(__file__).parent
-OUTPUT_DIR = ROOT_DIR / "output"
 CONTENT_DIR = ROOT_DIR / "content"
 TEMPLATE_DIR = ROOT_DIR / "templates"
 STATIC_DIR = ROOT_DIR / "static"
+OUTPUT_DIR = ROOT_DIR / "output"
+
+POSTS_DIRNAME = Path("posts")
 
 md = MarkdownIt("commonmark").enable('table')
 
@@ -31,6 +33,12 @@ def build_nav(links: dict[str, str]) -> str:
         f'<a href="{href}">{label}</a>'
         for label, href in links.items()
     )
+
+def build_post_entries(links, titles) -> str:
+    post = []
+    for href, title in zip(links, titles):
+        post.append(f'<a class="blog-post-card" href="{href}">{title}</a>')
+    return "\n".join(post)
 
 def copy_static(src, dst):
     if src.exists():
@@ -63,10 +71,28 @@ def build():
             "Resume": f"/{OUTPUT_DIR.stem}/resume.html",
         }
 
+        post_links = []
+        for post in (CONTENT_DIR / POSTS_DIRNAME).rglob("*.md"):
+            post_link = (POSTS_DIRNAME / post.stem).with_suffix(".html")
+            post_links.append("/output/" + post_link.as_posix())
+        
+        post_titles = []
+
+        for post in (CONTENT_DIR / POSTS_DIRNAME).rglob("*.md"):
+            title = None
+            with post.open(encoding="utf-8") as file:
+                for line in file:
+                    line = line.strip()
+                    if line.startswith("# "):
+                        title = line[2:].strip()
+                        break
+            post_titles.append(title)
+
         replacements = {
             "content": content_html,
             "title": md_file.stem,
             "nav": build_nav(nav_links),
+            "posts": build_post_entries(post_links, post_titles),
         }
 
         # decide on final html
@@ -74,9 +100,6 @@ def build():
 
         # write out final html
         out_path.write_text(final_html, encoding="utf-8")
-
-        # print the result
-        print(f"built {out_path}")
 
 if __name__ == "__main__":
     build()
