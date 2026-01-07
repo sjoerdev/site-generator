@@ -174,7 +174,6 @@ pre {
 pre code {
     overflow-x: auto;
     border: 1px solid var(--border);
-    font-family: inherit;
     border-radius: inherit;
     overflow-x: auto;
 }
@@ -182,9 +181,10 @@ pre code {
 /* code inline */
 code {
     background-color: var(--inline-code-bg);
-    padding: 0rem 0.3rem;
+    padding: 0.1rem 0.3rem;
     border-radius: 4px;
-    font-family: inherit;
+    font-family: "Cascadia Mono";
+    font-size: 0.85rem; /* github way of equalizing font size */
 }
 
 /* tables */
