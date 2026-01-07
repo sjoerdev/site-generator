@@ -65,6 +65,16 @@ def build():
         template_name = md_file.stem + ".html"
         template = load_template(template_name)
 
+        # pre-process themplate to insert archetypes
+        _templates = TEMPLATE_DIR.rglob("_*.html")
+        replacements: dict[str, str] = {}
+        for _tem in _templates:
+            _tem_html = _tem.read_text(encoding="utf-8")
+            _tem_tag = _tem.name.removeprefix("_").removesuffix(".html")
+            replacements[_tem_tag] = _tem_html
+        template = insert_placeholders(template, replacements)
+
+        # determine which pages are in the nav
         nav_links = {
             "Home": f"/{OUTPUT_DIR.stem}/index.html",
             "Blog": f"/{OUTPUT_DIR.stem}/blog.html",
