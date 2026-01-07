@@ -142,8 +142,6 @@ void test()
 }
 ```
 
-<br>
-
 **Shared Pointer:**
 
 What makes this one different from the other smart pointers:
@@ -176,8 +174,6 @@ void test()
     // now since there are no more shares the object is freed
 }
 ```
-
-<br>
 
 **Weak Pointer:**
 
@@ -235,8 +231,6 @@ void test()
     // the weak pointer still exists but cant be locked anymore
 }
 ```
-
-<br>
 
 ## Headers
 
@@ -361,8 +355,6 @@ Type test = {x, y, z}; // works on arrays
 Type test = [x, y, z]; // works on collections
 ```
 
-<br>
-
 **Copy Initialization / Copy Assignment:**
 
 Copy initialization is very different from copy assignment, even though the syntax for both is nearly identical. 
@@ -432,8 +424,6 @@ public:
     }
 }
 ```
-
-<br>
 
 **Things to remember about initialization:**
 
@@ -1400,8 +1390,6 @@ int z = 5 + 3; // (5 + 3) is an rvalue
 int w = x + 1; // (x + 1) is an rvalue
 int&& = 4; // reference to an rvalue
 ```
-
-<br>
 
 **Why Rvalues are needed in move semantics:**
 
