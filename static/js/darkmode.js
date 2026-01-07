@@ -1,4 +1,4 @@
-// base logic for the website
+// dark mode toggle logic
 
 const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
 
