@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 from pathlib import Path
 from markdown_it import MarkdownIt
@@ -28,6 +29,12 @@ def build_nav(links: dict[str, str]) -> str:
         for label, href in links.items()
     )
 
+def build_toc(links: dict[str, str]) -> str:
+    return "\n".join(
+        f'<li><a href="{href}">{label}</a></li>'
+        for label, href in links.items()
+    )
+
 def build_post_entries(links, titles) -> str:
     post = []
     for href, title in zip(links, titles):
@@ -48,6 +55,13 @@ def get_template_path(md_file: Path) -> Path:
         template_path = TEMPLATE_DIR / "base.html"
     return template_path
 
+def add_ids_to_h2(html: str, header_links: dict[str, str]) -> str:
+    def replacer(match):
+        text = match.group(1)
+        kebab_id = header_links.get(text, "#")
+        return f'<h2 id="{kebab_id[1:]}">{text}</h2>'
+    return re.sub(r'<h2>(.*?)</h2>', replacer, html)
+
 def build():
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)
@@ -61,9 +75,6 @@ def build():
         rel_path = md_file.relative_to(CONTENT_DIR)
         out_path = (OUTPUT_DIR / rel_path).with_suffix(".html")
         out_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # render md to html
-        content_html = md.render(md_file.read_text(encoding="utf-8"))
 
         # load html template
         template = get_template_path(md_file).read_text(encoding="utf-8")
@@ -84,13 +95,23 @@ def build():
             "Resume": f"/{OUTPUT_DIR.stem}/resume.html",
         }
 
+        header_links = {}
+        with md_file.open(encoding="utf-8") as file:
+            for line in file:
+                line = line.strip()
+                if line.startswith("## "):
+                    name = line[3:].strip()
+                    kebab = re.sub(r'[^a-zA-Z0-9]+', '-', name).strip('-').lower()
+                    header_links[name] = f"#{kebab}"
+
+        print(header_links)
+
         post_links = []
         for post in (CONTENT_DIR / POSTS_DIRNAME).rglob("*.md"):
             post_link = (POSTS_DIRNAME / post.stem).with_suffix(".html")
             post_links.append("/output/" + post_link.as_posix())
         
         post_titles = []
-
         for post in (CONTENT_DIR / POSTS_DIRNAME).rglob("*.md"):
             title = None
             with post.open(encoding="utf-8") as file:
@@ -101,10 +122,17 @@ def build():
                         break
             post_titles.append(title)
 
+        # render md to html
+        content_html = md.render(md_file.read_text(encoding="utf-8"))
+
+        # add id's to the h2 headers
+        content_html = add_ids_to_h2(content_html, header_links)
+
         replacements = {
             "content": content_html,
             "title": md_file.stem,
             "nav": build_nav(nav_links),
+            "toc": build_toc(header_links),
             "posts": build_post_entries(post_links, post_titles),
         }
 
