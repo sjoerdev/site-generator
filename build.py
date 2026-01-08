@@ -13,12 +13,6 @@ POSTS_DIRNAME = Path("posts")
 
 md = MarkdownIt("commonmark").enable('table')
 
-def load_template(name: str) -> str:
-    template_path = TEMPLATE_DIR / name
-    if not template_path.exists():
-        template_path = TEMPLATE_DIR / "base.html"
-    return template_path.read_text(encoding="utf-8")
-
 def insert_template(input_html: str, insertion: str, name: str) -> str:
     return input_html.replace(f"{{{{ {name} }}}}", insertion)
 
@@ -44,6 +38,16 @@ def copy_static(src, dst):
     if src.exists():
         shutil.copytree(src, dst)
 
+def get_template_path(md_file: Path) -> Path:
+    if (md_file.parent.stem == "posts"):
+        template_name = str(TEMPLATE_DIR / "post.html")
+    else:
+        template_name = md_file.stem + ".html"
+    template_path = TEMPLATE_DIR / template_name
+    if not template_path.exists():
+        template_path = TEMPLATE_DIR / "base.html"
+    return template_path
+
 def build():
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)
@@ -62,8 +66,7 @@ def build():
         content_html = md.render(md_file.read_text(encoding="utf-8"))
 
         # load html template
-        template_name = md_file.stem + ".html"
-        template = load_template(template_name)
+        template = get_template_path(md_file).read_text(encoding="utf-8")
 
         # pre-process themplate to insert archetypes
         _templates = TEMPLATE_DIR.rglob("_*.html")
