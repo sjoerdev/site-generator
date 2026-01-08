@@ -125,19 +125,6 @@ header nav a:hover {
     /* todo */
 }
 
-.collapsible-content {
-  display: none;
-}
-
-#toc-toggle {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-#toc-toggle:checked + .collapsible-content {
-  display: block;
-}
-
 .container {
     display: flex;
     flex-direction: column;

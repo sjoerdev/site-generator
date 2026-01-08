@@ -104,6 +104,8 @@ def build():
                     kebab = re.sub(r'[^a-zA-Z0-9]+', '-', name).strip('-').lower()
                     header_links[name] = f"#{kebab}"
 
+        print(header_links)
+
         post_links = []
         for post in (CONTENT_DIR / POSTS_DIRNAME).rglob("*.md"):
             post_link = (POSTS_DIRNAME / post.stem).with_suffix(".html")
