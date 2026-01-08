@@ -117,22 +117,38 @@ header nav a:hover {
     background: color-mix(in srgb, var(--surface-bg) 80%, white 20%);
 }
 
-/* center section */
+.toc {
+    /* todo */
+}
+
 .content {
+    /* todo */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin: 0 auto;
     max-width: 800px;
-    padding: 2rem;
+}
 
+.container > div {
+    padding: 2rem;
     background-color: var(--surface-bg);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 600px) {
-    .content {
-        padding: 1rem;
+@media (max-width: 800px) {
+    .container > div {
         border-radius: 0;
-        box-shadow: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .container > div {
+        padding: 1rem;
     }
 }
 
